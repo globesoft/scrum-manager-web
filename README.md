@@ -1,171 +1,83 @@
-Symfony Standard Edition
-========================
+Scrum Manager Web
+=================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Open-source, cross-platform application for handling Scrum within a team.
 
-This document contains information on how to download, install, and start
-using Symfony. For a more detailed explanation, see the [Installation][1]
-chapter of the Symfony Documentation.
+How to collaborate?
+===================
 
-1) Installing the Standard Edition
-----------------------------------
+If you would like to collaborate to the development of the project, you're very much free to do so. Please make sure to follow the *installation instructions* below and the *milestone rules*. There are also some specifics related to branching below.
 
-When it comes to installing the Symfony Standard Edition, you have the
-following options.
+### Branching
 
-### Use Composer (*recommended*)
+Each individual issue needs to be solved within the context of a ticket - every ticket denotes an individual remote feature branch, which is deleted when merged.
 
-As Symfony uses [Composer][2] to manage its dependencies, the recommended way
-to create a new project is to use it.
+We use powerful continuous integration and QA software to ensure that the project is of the highest quality, so make sure to always check with our remote solutions in order to validate your work, **before merging back into master via GitHub's pull request mechanism** 
 
-If you don't have Composer yet, download it following the instructions on
-http://getcomposer.org/ or just run the following command:
+Remember to rebase often and to squash your commits before merging a branch, so that our stable snapshots are in fact, actually stable, and not just intermediate development points.
 
-    curl -s http://getcomposer.org/installer | php
+### Branching example
 
-Then, use the `create-project` command to generate a new Symfony application:
+Let's say you're working on Issue 42, which indicates: _Fix code coverage for UserAccount class_. We would go ahead and create a remote feature branch named: _i42-code-coverage-useraccount_, and we would look at solving the code coverage problem for the class.
 
-    php composer.phar create-project symfony/framework-standard-edition path/to/install
+When we're done with development, we would commit with the following commands:
 
-Composer will install Symfony and all its dependencies under the
-`path/to/install` directory.
+* git commit -am "Fixes #42: Fix code coverage for UserAccount class"
+* git push -u origin i42-code-coverage-useraccount
 
-### Download an Archive File
+The set of commands above would trigger _Travis CI, Scrutinizer and Coveralls_ builds for our remote branch which can validate/invalidate our solution. If we made a mistake and didn't actually completly cover the UserAccount class, we can implement our solution, and then rebase:
 
-To quickly test Symfony, you can also download an [archive][3] of the Standard
-Edition and unpack it somewhere under your web server root directory.
+* git commit -am "Solved code coverage issue for getId() method"
+* git rebase -i HEAD~2
+* git push -f
 
-If you downloaded an archive "without vendors", you also need to install all
-the necessary dependencies. Download composer (see above) and run the
-following command:
+Finally, when we're ready, we just open a new pull request on GitHub and optionally ask somebody to do a code review for us. Once the pull request is done, all of the QA systems above will be triggered again, and we can validate that what's been merged into master does validate our solution. Our ticket will also be closed when merging the PR.
 
-    php composer.phar install
+Milestones
+==========
 
-2) Checking your System Configuration
--------------------------------------
+Milestones are used as ticket buckets, so that we have better control over our release schedule and ticket organisation. If you come across a bug or a ticket that **can be assigned to one of the existing milestones**, make sure you do that. If you find several tickets that **could be grouped under a common milestone**, create one for it, and if you encounter a general purpose ticket, add it to the list of issues, but **don't specify a milestone**.
 
-Before starting coding, make sure that your local system is properly
-configured for Symfony.
+Installation
+============
 
-Execute the `check.php` script from the command line:
+In order to install the project and contribute to it, you need to follow the steps below. Please make sure you have access to *Composer* for dependency management, and to *Git* for version control management.
 
-    php app/check.php
+Source code management
+----------------------
 
-The script returns a status code of `0` if all mandatory requirements are met,
-`1` otherwise.
+1. Clone the GitHub repository via the following command: **https://github.com/globesoft/scrum-manager-web**
+2. To install all of the dependencies required for the project, go into the root of the project and run: **composer install**
 
-Access the `config.php` script from a browser:
+* The command above will also ask you about the initial setup of your project, so please make sure to specify **your own database connectivity details**.
 
-    http://localhost/path/to/symfony/app/web/config.php
+3. Set up permissions for Symfony by running the [installation commands](http://symfony.com/doc/current/book/installation.html#configuration-and-setup) or by simply applying the operations below in the root dir of the project checkout:
 
-If you get any warnings or recommendations, fix them before moving on.
+* APACHEUSER=`ps aux | grep -E '[a]pache|[h]ttpd' | grep -v root | head -1 | cut -d\  -f1`
+* sudo setfacl -R -m u:$APACHEUSER:rwX -m u:`whoami`:rwX app/cache app/logs
+* sudo setfacl -dR -m u:$APACHEUSER:rwX -m u:`whoami`:rwX app/cache app/logs
 
-3) Browsing the Demo Application
---------------------------------
+Database management
+-------------------
 
-Congratulations! You're now ready to use Symfony.
+We run two separate databases which always need to be maintained - one is applicable for the development environment where active data can be stored and used, and one for the test environment, where integration tests can be run; please be aware that **no stable data should ever be kept on the test database** since it will always be destroyed when running integration tests.
 
-From the `config.php` page, click the "Bypass configuration and go to the
-Welcome page" link to load up your first Symfony page.
+In order to configure database management, there are two sets of operations that need to be performed - first-time database setup, and continous database maintenance.
 
-You can also use a web-based configurator by clicking on the "Configure your
-Symfony Application online" link of the `config.php` page.
+### First time database setup
 
-To see a real-live Symfony page in action, access the following page:
+In order to set up the database, you simply need to run:
 
-    web/app_dev.php/demo/hello/Fabien
+* php app/console doctrine:database:create
+* php app/console doctrine:database:create --env=test
 
-4) Getting started with Symfony
--------------------------------
+The commands above will set up the project for the **dev** and **test** environments.
 
-This distribution is meant to be the starting point for your Symfony
-applications, but it also contains some sample code that you can learn from
-and play with.
+### Continous database maintenance
 
-A great way to start learning Symfony is via the [Quick Tour][4], which will
-take you through all the basic features of Symfony2.
+Database changes are handled via [Doctrine Migrations](http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html), and in order to apply all of the migrations at once, please run the following commands:
 
-Once you're feeling good, you can move onto reading the official
-[Symfony2 book][5].
+* php app/console doctrine:mig:mig
+* php app/console doctrine:mig:mig --env=test
 
-A default bundle, `AcmeDemoBundle`, shows you Symfony2 in action. After
-playing with it, you can remove it by following these steps:
-
-  * delete the `src/Acme` directory;
-
-  * remove the routing entry referencing AcmeDemoBundle in `app/config/routing_dev.yml`;
-
-  * remove the AcmeDemoBundle from the registered bundles in `app/AppKernel.php`;
-
-  * remove the `web/bundles/acmedemo` directory;
-
-  * remove the `security.providers`, `security.firewalls.login` and
-    `security.firewalls.secured_area` entries in the `security.yml` file or
-    tweak the security configuration to fit your needs.
-
-What's inside?
----------------
-
-The Symfony Standard Edition is configured with the following defaults:
-
-  * Twig is the only configured template engine;
-
-  * Doctrine ORM/DBAL is configured;
-
-  * Swiftmailer is configured;
-
-  * Annotations for everything are enabled.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **AcmeDemoBundle** (in dev/test env) - A demo bundle with some example
-    code
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  http://symfony.com/doc/2.3/book/installation.html
-[2]:  http://getcomposer.org/
-[3]:  http://symfony.com/download
-[4]:  http://symfony.com/doc/2.3/quick_tour/the_big_picture.html
-[5]:  http://symfony.com/doc/2.3/index.html
-[6]:  http://symfony.com/doc/2.3/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  http://symfony.com/doc/2.3/book/doctrine.html
-[8]:  http://symfony.com/doc/2.3/book/templating.html
-[9]:  http://symfony.com/doc/2.3/book/security.html
-[10]: http://symfony.com/doc/2.3/cookbook/email.html
-[11]: http://symfony.com/doc/2.3/cookbook/logging/monolog.html
-[12]: http://symfony.com/doc/2.3/cookbook/assetic/asset_management.html
-[13]: http://symfony.com/doc/2.3/bundles/SensioGeneratorBundle/index.html
+The commands above guarantee that your database structure will pass through all of the stable states and be set to the latest version.
