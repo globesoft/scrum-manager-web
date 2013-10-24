@@ -1,0 +1,4 @@
+gs_scrum_web:
+    resource: "@GSScrumWebBundle/Resources/config/routing.yml"
+    prefix:   /
+

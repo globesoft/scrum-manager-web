@@ -1,0 +1,7 @@
+parameters:
+#    gs_scrum_web.example.class: GlobeSoft\ScrumManagerWebBundle\Example
+
+services:
+#    gs_scrum_web.example:
+#        class: %gs_scrum_web.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
