@@ -24,7 +24,8 @@
         "satooshi/php-coveralls": "dev-master",
         "braincrafted/bootstrap-bundle": "dev-master",
         "twitter/bootstrap": "2.3.*",
-        "jquery/jquery": "1.9.*"
+        "jquery/jquery": "1.9.*",
+        "leafo/lessphp": "dev-master"
     },
     "repositories": [
         {

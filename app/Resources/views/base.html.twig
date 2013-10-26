@@ -1,13 +1,39 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ asset('css/bootstrap-responsive.css') }}" rel="stylesheet">
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+        <link rel="stylesheet" href="{{ asset('css/application.css') }}">
+    {% endblock %}
+
+    {% block javascripts %}
+        <!-- jQuery + Bootstrap -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+    {% endblock %}
+</head>
+<body>
+
+{% include '@GSScrumWeb/Template/_header.html.twig' %}
+
+{% block body %}{% endblock %}
+
+<!-- FOOTER -->
+<footer class="container-fluid">
+    <div class="container">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2013 Petre Pătraşc &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="http://thenounproject.com/noun/leaf/#icon-No6496" target="_blank">Leaf</a> designed by <a href="http://thenounproject.com/mateozlatar" target="_blank">Mateo Zlatar</a> from The Noun Project</p>
+    </div>
+</footer>
+</body>
 </html>

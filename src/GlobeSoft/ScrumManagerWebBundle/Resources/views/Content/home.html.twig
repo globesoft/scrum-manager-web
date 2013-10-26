@@ -1,0 +1,78 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid home-notice"
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="container text-center">
+        <h1>{{ project_name }} <img src="{{ asset('images/leaf-logo.svg') }}"></h1>
+        <p class="lead">An open-source, cross-platform application that increases your efficiency during Scrum meetings, and lets you focus on making your team and your projects better.</p>
+
+        <img class="img-polaroid" src="http://placehold.it/1122x400">
+
+        <div class="row span12 pagination-centered">
+            <p><a href="#" class="btn btn-primary btn-large btn-feature">Run a sample retrospective in the cloud</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid feature-box">
+    <div class="container">
+        <div class="row">
+            <div class="span4">
+                <div class="row text-center" >
+                    <img src="http://placehold.it/140x140" class="img-circle">
+                </div>
+
+                <h2>Better facilitation</h2>
+                <p class="lead">Track time spent in meetings, actions taken by the team and extract detailed reports regarding the process that you've set up. Allow your users to input data in advance and <strong>gain insight</strong> into how your project.</p>
+            </div>
+
+            <div class="span4">
+                <div class="row text-center" >
+                    <img src="http://placehold.it/140x140" class="img-circle">
+                </div>
+
+                <h2>Run how you want</h2>
+                <p class="lead">You can run your meetings with {{ project_name }} in the <strong>cloud</strong> or set it up on <strong>your intranet</strong> - try a sample run now (no sign-up required) and see how you can gain <strong>key insight</strong> into how your team is feeling about a project.</p>
+            </div>
+
+            <div class="span4">
+                <div class="row text-center" >
+                    <img src="http://placehold.it/140x140" class="img-circle">
+                </div>
+
+                <h2>Cross-platform</h2>
+                <p class="lead">We're aiming to release <strong>desktop</strong> (Ubuntu, Windows, Mac) and <strong>mobile</strong> (Android, iOS) versions of {{ project_name }}, that allow for real-time collaboration and better integration. Details to follow!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container home-featurette">
+        <div class="featurette">
+            <img class="featurette-image pull-right img-polaroid" src="http://placehold.it/400x250">
+            <h2 class="featurette-heading">First feature. <span class="muted">Subtitle 1</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="clearfix"></div>
+
+        <hr class="featurette-divider">
+
+        <div class="featurette">
+            <img class="featurette-image pull-left img-polaroid" src="http://placehold.it/400x250">
+            <h2 class="featurette-heading">Second feature. <span class="muted">Subtitle 2.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="clearfix"></div>
+
+
+        <hr class="featurette-divider">
+
+        <div class="featurette">
+            <img class="featurette-image pull-right img-polaroid" src="http://placehold.it/400x250">
+            <h2 class="featurette-heading">Third feature. <span class="muted">Subtitle 3.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="clearfix"></div>
+</div>
+{% endblock %}
