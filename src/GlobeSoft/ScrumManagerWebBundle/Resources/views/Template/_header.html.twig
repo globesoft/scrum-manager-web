@@ -7,19 +7,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">{{ project_name }}</a>
+            <a class="brand" href="{{ path('home') }}" id="logo">{{ project_name }}</a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="active"><a href="#">{{ 'home'|icon('white') }} Home</a></li>
+                    <li class="active"><a href="{{ path('home') }}">{{ 'home'|icon('white') }} Home</a></li>
                     <li><a href="#about">{{ 'info-sign'|icon('white') }} About</a></li>
                     <li><a href="#contact">{{ 'glass'|icon('white') }} Sample</a></li>
                 </ul>
             </div>
 
             <div class="pull-right">
-                <button type="button" class="btn btn-primary">{{ 'ok'|icon('white') }} Sign in</button>
-                <button type="button" class="btn btn-danger">{{ 'user'|icon('white') }} Sign up</button>
+                <a href="#" class="btn btn-primary">{{ 'ok'|icon('white') }} Sign in</a>
+                <a href="{{ path('account_register') }}" class="btn btn-danger">{{ 'user'|icon('white') }} Sign up</a>
             </div>
             <!--/.nav-collapse -->
         </div>

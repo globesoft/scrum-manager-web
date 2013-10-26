@@ -19,7 +19,7 @@ class AccountTest extends \PHPUnit_Framework_TestCase {
             'fullname' => ucfirst(GeneralHelperService::generateRandomString(10) . ' ' . GeneralHelperService::generateRandomString(10)),
             'password' => GeneralHelperService::generateRandomString(30),
             'email' => GeneralHelperService::generateRandomString(20) . '@dreamlabs.ro',
-            'active' => false,
+            'active' => true,
             'deleted' => false
         );
     }
@@ -46,7 +46,7 @@ class AccountTest extends \PHPUnit_Framework_TestCase {
     public function testThatDefaultsAreCorrectlySet() {
         $accountEntity = new Account();
 
-        $this->assertFalse($accountEntity->getActive());
+        $this->assertTrue($accountEntity->getActive());
         $this->assertFalse($accountEntity->getDeleted());
 
         $timeToTest = new DateTime('now');
