@@ -1,6 +1,9 @@
 Scrum Manager Web
 =================
 
+[![Build Status](https://travis-ci.org/globesoft/scrum-manager-web.png?branch=master)](https://travis-ci.org/globesoft/scrum-manager-web)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/globesoft/scrum-manager-web/badges/quality-score.png?s=7aa3fc28b38a807bf0c86118c5a44206076bfd18)](https://scrutinizer-ci.com/g/globesoft/scrum-manager-web/)
+
 Open-source, cross-platform application for handling Scrum within a team.
 
 How to collaborate?
