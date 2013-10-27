@@ -55,7 +55,7 @@ class AccountTest extends \PHPUnit_Framework_TestCase {
         $this->assertGreaterThan($timeToTest, $accountEntity->getCreatedAt());
         $this->assertGreaterThan($timeToTest, $accountEntity->getUpdatedAt());
 
-        $this->assertEquals(20, strlen($accountEntity->getSeed()));
+        $this->assertEquals(20, strlen($accountEntity->getSalt()));
 
         //assert NULL values
         $this->assertNull($accountEntity->getId());
@@ -73,18 +73,5 @@ class AccountTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($this->seedData['active'], $accountEntity->getActive());
         $this->assertEquals($this->seedData['deleted'], $accountEntity->getDeleted());
         $this->assertNotNull($accountEntity->getPassword());
-    }
-
-    public function testEncryptionOfPasswordUsingSeedSystem() {
-        $password = GeneralHelperService::generateRandomString(30);
-        $accountEntity = new Account();
-        $accountEntity->setPassword($password);
-
-        $this->assertNotNull($accountEntity->getSeed());
-        $seed = $accountEntity->getSeed();
-
-        $this->assertNotNull($accountEntity->getPassword());
-        $this->assertEquals(128, strlen($accountEntity->getPassword()));
-        $this->assertEquals(hash('sha512', $seed . $password), $accountEntity->getPassword());
     }
 }

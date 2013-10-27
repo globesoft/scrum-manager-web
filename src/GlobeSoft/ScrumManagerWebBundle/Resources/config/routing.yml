@@ -9,3 +9,17 @@ home:
 account_register:
   path: /account/register
   defaults: { _controller: GSScrumWebBundle:Account:register }
+
+login:
+  path: /account/login
+  defaults: { _controller: GSScrumWebBundle:Account:login }
+
+account_logout:
+  pattern: /account/logout
+
+login_check:
+  path: /account/login_check
+
+project_main:
+  path: /project
+  defaults: { _controller: GSScrumWebBundle:Project:index }
