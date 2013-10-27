@@ -148,3 +148,16 @@ footer {
     font-size: 500%;
     height: 330px;
 }
+
+#logo img {
+    width: 24px;
+    opacity: 0.7;
+}
+
+#logo:hover img {
+    opacity: 1;
+}
+
+.header .navbar-inner {
+    padding-top: 3px;
+}
