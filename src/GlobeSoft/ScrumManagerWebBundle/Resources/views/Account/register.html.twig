@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container emphasis">
+        <div class="row span11">
+            <h1>Sign up for free</h1>
+            <p class="lead">You are <strong class="text-warning">about a minute away</strong> from hassle-free Scrum meetings.</p>
+        </div>
+
+        <div class="row span11">
+            <hr />
+        </div>
+
+        <div class="row span11">
+            {{ form_start(form, {'attr': { 'class': 'form-large'}}) }}
+                <div class="pull-right"><input type="submit" class="btn btn-huge btn-info span6" value="Sign up" /></div>
+                {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+
+        <div class="row span11">
+            <hr />
+        </div>
+
+        <div class="row span11">
+            <h1>Membership advantages</h1>
+
+            <p class="lead">By becoming a <strong class="text-info">member of our community</strong>, you gain access to the following:</p><br />
+
+            <div class="featurette">
+                <img class="featurette-image pull-right img-polaroid" src="http://placehold.it/400x250">
+                <h2 class="featurette-heading">First feature. <span class="muted">Subtitle 1</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="clearfix"></div>
+
+            <hr class="featurette-divider">
+
+            <div class="featurette">
+                <img class="featurette-image pull-left img-polaroid" src="http://placehold.it/400x250">
+                <h2 class="featurette-heading">Second feature. <span class="muted">Subtitle 2.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="clearfix"></div>
+
+
+            <hr class="featurette-divider">
+
+            <div class="featurette">
+                <img class="featurette-image pull-right img-polaroid" src="http://placehold.it/400x250">
+                <h2 class="featurette-heading">Third feature. <span class="muted">Subtitle 3.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+
+    </div>
+{% endblock %}

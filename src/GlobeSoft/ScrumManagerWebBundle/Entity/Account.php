@@ -21,7 +21,7 @@ class Account {
     public function __construct() {
         $this->setCreatedAt(new DateTime('now'));
         $this->setUpdatedAt(new DateTime('now'));
-        $this->setActive(false);
+        $this->setActive(true);
         $this->setDeleted(false);
 
         $this->setSeed(GeneralHelperService::generateRandomString(20));
@@ -57,7 +57,7 @@ class Account {
     /**
      * @ORM\Column(name="full_name", type="string", length=160)
      */
-    protected $full_name;
+    protected $fullName;
 
     /**
      * @ORM\Column(type="boolean")
@@ -182,26 +182,26 @@ class Account {
     }
 
     /**
-     * Set full_name
+     * Set fullName
      *
      * @param string $fullName
      * @return Account
      */
     public function setFullName($fullName)
     {
-        $this->full_name = $fullName;
+        $this->fullName = $fullName;
     
         return $this;
     }
 
     /**
-     * Get full_name
+     * Get fullName
      *
      * @return string 
      */
     public function getFullName()
     {
-        return $this->full_name;
+        return $this->fullName;
     }
 
     /**

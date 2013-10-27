@@ -1,3 +1,11 @@
-home:
+default:
   path: /
   defaults: { _controller: GSScrumWebBundle:Content:home }
+
+home:
+  path: /home
+  defaults: { _controller: GSScrumWebBundle:Content:home }
+
+account_register:
+  path: /account/register
+  defaults: { _controller: GSScrumWebBundle:Account:register }
