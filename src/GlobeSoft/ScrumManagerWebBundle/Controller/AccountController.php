@@ -23,7 +23,9 @@ class AccountController extends Controller{
             $em->persist($account);
             $em->flush();
 
-            return new Response('Thanks for joining Scrum Manager.');
+            return $this->render('@GSScrumWeb/Account/register_success.html.twig', array(
+                'account' => $account
+            ));
         }
 
         return $this->render('GSScrumWebBundle:Account:register.html.twig', array(

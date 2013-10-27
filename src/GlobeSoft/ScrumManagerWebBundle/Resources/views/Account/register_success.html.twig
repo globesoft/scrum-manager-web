@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="container emphasis">
+    <div class="row span11">
+        <h1>All done!</h1>
+
+        <p class="lead">Hey <strong>{{ account.fullName }}</strong>, thanks for signing up! You can now jump in and <a href="#">manage your projects</a> or have a look at some of the tutorial lessons that we've set up below.</p>
+    </div>
+
+
+    <div class="row span11">
+        <h2>Tutorial lessons</h2>
+
+        <p>Currently placeholders, need to add some actual tutorials behind it.</p>
+
+        <ul>
+            <li><a href="#">Setting up a new project</a></li>
+            <li><a href="#">Invite users to your project</a></li>
+            <li><a href="#">Setting up a new retrospective</a></li>
+            <li><a href="#">Running a retrospective</a></li>
+            <li><a href="#">Access reporting data about a meeting</a></li>
+        </ul>
+    </div>
+
+    <div class="row span11">
+        <h2>Video lessons</h2>
+
+        <p>Currently placeholders, need to add some actual videos behind it.</p>
+
+        <div class="row span 11">
+            <iframe width="340" height="250" src="//www.youtube.com/embed/KwhjlNvF-4Q" frameborder="0" allowfullscreen></iframe>
+            <iframe width="340" height="250" src="//www.youtube.com/embed/h0ffIJ7ZO4U" frameborder="0" allowfullscreen></iframe>
+            <iframe width="340" height="250" src="//www.youtube.com/embed/vUSzL2leaFM" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+    </div>
+
+    <div class="row span11">
+        <h2>Documentation</h2>
+
+        <p>If you ever get stuck, make sure to visit our <a href="">docs</a> section, or send us an email over at <a mailto="info@dreamlabs.ro">info@dreamlabs.ro</a>.</p>
+    </div>
+</div>
+{% endblock %}

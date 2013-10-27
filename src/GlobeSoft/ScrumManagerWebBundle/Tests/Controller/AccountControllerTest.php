@@ -31,6 +31,6 @@ class AccountControllerTest extends WebTestCase {
 
         $crawler = $client->submit($form);
 
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Thanks for joining Scrum Manager")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("All done!")')->count());
     }
 }
