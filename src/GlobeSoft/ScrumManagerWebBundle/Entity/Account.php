@@ -5,6 +5,7 @@ namespace GlobeSoft\ScrumManagerWebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use \DateTime;
 use GlobeSoft\ScrumManagerWebBundle\Service\GeneralHelperService;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class Account represents the account of a regular user on the website. A user can login/logout and perform
@@ -13,7 +14,7 @@ use GlobeSoft\ScrumManagerWebBundle\Service\GeneralHelperService;
  * @ORM\Entity(repositoryClass="GlobeSoft\ScrumManagerWebBundle\Repository\AccountRepository")
  * @ORM\Table(name="account")
  */
-class Account {
+class Account implements UserInterface {
 
     /**
      * Class constructor.
@@ -24,7 +25,16 @@ class Account {
         $this->setActive(true);
         $this->setDeleted(false);
 
-        $this->setSeed(GeneralHelperService::generateRandomString(20));
+        $this->setSalt(GeneralHelperService::generateRandomString(20));
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
     }
 
     /**
@@ -47,7 +57,7 @@ class Account {
     /**
      * @ORM\Column(type="string", length=60)
      */
-    protected $seed;
+    protected $salt;
 
     /**
      * @ORM\Column(type="string", length=180)
@@ -120,8 +130,7 @@ class Account {
      */
     public function setPassword($password)
     {
-        $this->password = hash('sha512', $this->seed . $password);
-    
+        $this->password = $password;
         return $this;
     }
 
@@ -136,26 +145,26 @@ class Account {
     }
 
     /**
-     * Set seed
+     * Set salt
      *
-     * @param string $seed
+     * @param string $salt
      * @return Account
      */
-    public function setSeed($seed)
+    public function setSalt($salt)
     {
-        $this->seed = $seed;
+        $this->salt = $salt;
     
         return $this;
     }
 
     /**
-     * Get seed
+     * Get salt
      *
      * @return string 
      */
-    public function getSeed()
+    public function getSalt()
     {
-        return $this->seed;
+        return $this->salt;
     }
 
     /**
