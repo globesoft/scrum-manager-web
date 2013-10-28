@@ -115,17 +115,33 @@ body {
     margin: 4em 0;
 }
 
-.emphasis{
+.emphasis, .passive-box {
     box-shadow: 0 0 10px #667;
     background-color: #067072;
+    padding-bottom: 2em;
 }
 
-.emphasis h1 {
+.emphasis a {
+    color: #F94B06;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #333;
+}
+
+.emphasis h1, .passive-box h1 {
     margin: 1em 0;
 }
 
 .emphasis img {
     margin: 0 2em;
+}
+
+.passive-box {
+    background-color: #DECFA6;
+    color: #577F68;
+}
+
+.passive-box h1 {
+    color: #1B6994;
 }
 
 footer {
