@@ -25,7 +25,8 @@
         "braincrafted/bootstrap-bundle": "dev-master",
         "twitter/bootstrap": "2.3.*",
         "jquery/jquery": "1.9.*",
-        "leafo/lessphp": "dev-master"
+        "leafo/lessphp": "dev-master",
+        "ornicar/gravatar-bundle" : "dev-master"
     },
     "repositories": [
         {
