@@ -12,22 +12,22 @@ class AccountRegisterForm extends AbstractType {
     {
         $builder->add('fullName', 'text', array(
                 'attr' => array(
-                    'class' => 'span4'
+                    'class' => 'span6'
                 )
             ))
             ->add('username', 'text', array(
                 'attr' => array(
-                    'class' => 'span4'
+                    'class' => 'span6'
                 )
             ))
             ->add('password', 'password', array(
                 'attr' => array(
-                    'class' => 'span4'
+                    'class' => 'span6'
                 )
             ))
             ->add('email', 'text', array(
                 'attr' => array(
-                    'class' => 'span4'
+                    'class' => 'span6'
                 )
             ));
     }
