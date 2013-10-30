@@ -9,18 +9,72 @@
             </button>
             <a class="brand" href="{{ path('home') }}" id="logo">{{ project_name }} <img src="{{ asset('images/leaf-logo.png') }}" /></a>
 
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li class="active"><a href="{{ path('home') }}">{{ 'home'|icon('white') }} Home</a></li>
-                    <li><a href="#about">{{ 'info-sign'|icon('white') }} About</a></li>
-                    <li><a href="#contact">{{ 'glass'|icon('white') }} Sample</a></li>
-                </ul>
-            </div>
+            {% if is_granted('ROLE_USER') %}
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="{{ path('home') }}">{{ 'home'|icon('white') }} Home</a></li>
 
-            <div class="pull-right">
-                <a href="{{ path('login') }}" class="btn btn-primary">{{ 'ok'|icon('white') }} Sign in</a>
-                <a href="{{ path('account_register') }}" class="btn btn-danger">{{ 'user'|icon('white') }} Sign up</a>
-            </div>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ 'briefcase' | icon('white') }} Projects</a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="#">{{ 'folder-open' | icon }} Manage</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">{{ 'asterisk' | icon }} Cegeka NV</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-collapse collapse account">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle account" data-toggle="dropdown" href="#">
+                                <img class="gravatar img img-rounded" src="{{ gravatar(app.security.token.user.email) }}" />
+                                <span class="username">{{app.security.token.user.fullname | title}}</span>
+                                <span class="badge">3</span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="#">{{ 'user' | icon }} Profile</a></li>
+                                <li><a href="#">{{ 'briefcase' | icon }} Projects</a></li>
+                                <li><a href="#">{{ 'bullhorn' | icon }} Notifications <span class="badge">3</span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ path('account_logout') }}">{{ 'adjust' | icon }} Sign out</a></li>
+                            </ul>
+                        </li>
+
+                        {#<a href="{{ path('login') }}" class="btn btn-primary">{{ 'ok'|icon('white') }} Sign in</a>#}
+                        {#<a href="{{ path('account_register') }}" class="btn btn-danger">{{ 'user'|icon('white') }} Sign up</a>#}
+                    </ul>
+                </div>
+            {% else %}
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="{{ path('home') }}">{{ 'home'|icon('white') }} Home</a></li>
+                        <li><a href="#about">{{ 'info-sign'|icon('white') }} About</a></li>
+                        <li><a href="#contact">{{ 'glass'|icon('white') }} Demo</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="nav-collapse collapse account">
+                    <ul class="nav">
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ 'ok' | icon('white') }} Sign in</a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('login') }}">{{ 'tasks' | icon }} Login form</a></li>
+                                <li><a href="#">{{ 'user' | icon }} GitHub</a></li>
+                                <li><a href="#">{{ 'briefcase' | icon }} Twitter</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="{{ path('account_register') }}">{{ 'user' | icon('white') }} Sign up</a></li>
+                    </ul>
+                </div>
+            {% endif %}
             <!--/.nav-collapse -->
         </div>
     </div>

@@ -30,7 +30,8 @@ security:
                 check_path: /account/login_check
             logout:
                 path:   /account/logout
-                target: /account/login
+                target: /
+                invalidate_session: false
             anonymous: ~
 
     access_control:

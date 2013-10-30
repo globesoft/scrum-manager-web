@@ -177,3 +177,29 @@ footer {
 .header .navbar-inner {
     padding-top: 3px;
 }
+
+.navbar .gravatar {
+    width: 20px;
+}
+
+.navbar .username {
+    color: #fff;
+    margin: 0 0.2em 0.3em;
+    position: relative;
+    top: 1px;
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 979px) {
+    .navbar .account {
+        float: right;
+    }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (max-width: 979px) {
+    .home-notice h1 {
+        margin-top: 0.2em;
+        line-height: 1;
+    }
+}
