@@ -44,6 +44,7 @@ class AccountController extends Controller{
         $request = $this->getRequest();
         $session = $request->getSession();
 
+
         // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(

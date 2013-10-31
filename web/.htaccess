@@ -39,6 +39,9 @@ DirectoryIndex app.php
 
     # Rewrite all other queries to the front controller.
     RewriteRule .? %{ENV:BASE}/app.php [L]
+
+    RewriteCond %{REQUEST_URI} \.php/ [NC]
+    RewriteRule ^(.*)\.php/(.*)$    /$1.php [NC,L,QSA,E=PATH_INFO:"/$2"]
 </IfModule>
 
 <IfModule !mod_rewrite.c>
@@ -50,6 +53,3 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
-
-RewriteCond %{REQUEST_URI} \.php/ [NC]
-RewriteRule ^(.*)\.php/(.*)$    /$1.php [NC,L,QSA,E=PATH_INFO:"/$2"]
