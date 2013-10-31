@@ -50,3 +50,6 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+RewriteCond %{REQUEST_URI} \.php/ [NC]
+RewriteRule ^(.*)\.php/(.*)$    /$1.php [NC,L,QSA,E=PATH_INFO:"/$2"]
