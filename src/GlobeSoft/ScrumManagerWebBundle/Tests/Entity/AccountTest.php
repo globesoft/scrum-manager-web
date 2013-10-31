@@ -14,7 +14,15 @@ class AccountTest extends \PHPUnit_Framework_TestCase {
     public function setUp() {
         parent::setUp();
 
-        $this->seedData = array(
+        $this->seedData = self::generateSeed();
+    }
+
+    /**
+     * Generate a seed array for the Account entity.
+     * @return array Seed array for the Account entity.
+     */
+    public static function generateSeed() {
+        return array(
             'username' => GeneralHelperService::generateRandomString(20),
             'fullname' => ucfirst(GeneralHelperService::generateRandomString(10) . ' ' . GeneralHelperService::generateRandomString(10)),
             'password' => GeneralHelperService::generateRandomString(30),
@@ -29,7 +37,7 @@ class AccountTest extends \PHPUnit_Framework_TestCase {
      * @param array $data The array that should be used for generating a new entity.
      * @return Account The entity generated from the array data.
      */
-    protected function createNewEntityFromArray($data) {
+    public static function createNewEntityFromArray($data) {
         $accountEntity = new Account();
 
         $accountEntity
@@ -65,7 +73,7 @@ class AccountTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testAllGettersAndSettersWorkCorrectly() {
-        $accountEntity = $this->createNewEntityFromArray($this->seedData);
+        $accountEntity = self::createNewEntityFromArray($this->seedData);
 
         $this->assertEquals($this->seedData['username'], $accountEntity->getUsername());
         $this->assertEquals($this->seedData['email'], $accountEntity->getEmail());
@@ -73,5 +81,11 @@ class AccountTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($this->seedData['active'], $accountEntity->getActive());
         $this->assertEquals($this->seedData['deleted'], $accountEntity->getDeleted());
         $this->assertNotNull($accountEntity->getPassword());
+    }
+
+    public function testThatEntityHasCorrectRole() {
+        $accountEntity = self::createNewEntityFromArray($this->seedData);
+        $this->assertEquals(array('ROLE_USER'), $accountEntity->getRoles());
+        $accountEntity->eraseCredentials();
     }
 }
